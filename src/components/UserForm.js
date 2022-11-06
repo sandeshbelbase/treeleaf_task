@@ -8,11 +8,11 @@ const schema = yup
   .object({
     name: yup.string().required("* number is required"),
     email: yup.string().email().required("* email is required"),
-    // phone: yup
-    //   .string()
-    //   .required("*phone number is required")
-    //   .matches(/^[0-9]+$/, "*Must be only digits")
-    //   .min(7, "* contact must be minimum 7 digits"),
+    phone: yup
+      .string()
+      .required("*phone number is required")
+      .matches(/^[0-9]+$/, "*Must be only digits")
+      .min(7, "* phone number must be minimum 7 digits"),
   })
   .required();
 
@@ -66,50 +66,69 @@ const UserForm = ({ setSubmitted, submitted }) => {
     localStorage.setItem("person", json);
     setSubmitted(!submitted);
     reset(defaultValues);
+    alert("Added new user SuccessFully");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Name:</label>
-      <input {...register("name")} placeholder="Eg. Sandesh " />
-      <p>{errors.name?.message}</p>
-      <label>Email:</label>
-      <input
-        type="email"
-        {...register("email")}
-        placeholder="Eg. ram@gmail.com "
-      />
-      <p>{errors.email?.message}</p>
-      <label>Contact:</label>
-      <input {...register("phone")} placeholder="Eg. 9847491037 " />
-      <p>{errors.phone?.message}</p>
-      <label>Date of Birth:</label>
-      <input type="date" {...register("dob")} />
-      <br />
-      <h7>Address</h7>
-      <br />
-      <label>City:</label>
-      <input {...register("city")} />
-      <br />
-      <label>District:</label>
-      <input {...register("district")} />
-      <br />
-      <label> Provience:</label>
-      <select {...register("province")}>
-        <br />
-        <option value="province 1">province 1 </option>
-        <option value="province 2">province 2 </option>
-        <option value="province 3">province 3 </option>
-        <option value="province 4">province 4 </option>
-        <option value="province 5">province 5 </option>
-        <option value="province 6">province 6 </option>
-        <option value="province 7">province 7 </option>
-      </select>
-      <br />
-      <label> Country:</label>
-      <input value="Nepal" {...register("country")} /> <br /> <br />
-      <input type="submit" />
-    </form>
+    <>
+      <h2 className="title">Treeleaf User Entry</h2>
+
+      <div className="form">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h3>Intro</h3>
+          <label>Name:</label>
+          <input {...register("name")} placeholder="Eg. Sandesh " />
+          <p>{errors.name?.message}</p>
+          <label>Email:</label>
+          <input
+            type="email"
+            {...register("email")}
+            placeholder="Eg. ram@gmail.com "
+          />
+          <p>{errors.email?.message}</p>
+          <label>Contact:</label>
+          <input {...register("phone")} placeholder="Eg. 9847491037 " />
+          <p>{errors.phone?.message}</p>
+          <label>Date of Birth:</label>
+          <input type="date" {...register("dob")} />
+          <br />
+          <h3>Address</h3>
+          <label>City:</label>
+          <input {...register("city")} />
+          <br />
+          <label>District:</label>
+          <input {...register("district")} />
+          <br />
+          <label> Provience:</label>
+          <select {...register("province")}>
+            <option value="province 1">province 1 </option>
+            <option value="province 2">province 2 </option>
+            <option value="province 3">province 3 </option>
+            <option value="province 4">province 4 </option>
+            <option value="province 5">province 5 </option>
+            <option value="province 6">province 6 </option>
+            <option value="province 7">province 7 </option>
+          </select>
+          <br />
+          <label> Country:</label>
+          <input value="Nepal" {...register("country")} /> <br /> <br />
+          <input
+            style={{
+              float: "left",
+              width: "40%",
+              color: "#fff",
+              backgroundColor: "#00923f",
+              cursor: "pointer",
+              border: "none",
+              borderRadius: "5px",
+              fontSize: "20px",
+              padding: "10px 8px ",
+            }}
+            type="submit"
+          />
+        </form>
+      </div>
+    </>
   );
 };
 

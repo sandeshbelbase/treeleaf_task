@@ -7,11 +7,11 @@ const schema = yup
   .object({
     name: yup.string().required("* number is required"),
     email: yup.string().email().required("* email is required"),
-    // phone: yup
-    //   .string()
-    //   .required("*phone number is required")
-    //   .matches(/^[0-9]+$/, "*Must be only digits")
-    //   .min(7, "* contact must be minimum 7 digits"),
+    phone: yup
+      .string()
+      .required("*phone number is required")
+      .matches(/^[0-9]+$/, "*Must be only digits")
+      .min(7, "* contact must be minimum 7 digits"),
   })
   .required();
 
@@ -70,6 +70,7 @@ const EditForm = ({ setSubmitted, submitted, item, closeModal }) => {
     setSubmitted(!submitted);
     reset(defaultValues);
     closeModal();
+    alert("Edited user SuccessFully");
   };
 
   return (
@@ -112,7 +113,21 @@ const EditForm = ({ setSubmitted, submitted, item, closeModal }) => {
       <br />
       <label> Country:</label>
       <input value="Nepal" {...register("country")} /> <br /> <br />
-      <input type="submit" value="Edit" />
+      <input
+        style={{
+          float: "left",
+          width: "40%",
+          color: "#fff",
+          backgroundColor: "blue",
+          cursor: "pointer",
+          border: "none",
+          borderRadius: "5px",
+          fontSize: "20px",
+          padding: "10px 8px ",
+        }}
+        type="submit"
+        value="Edit"
+      />
     </form>
   );
 };
